@@ -118,12 +118,5 @@ urlpatterns = [
     path('book_appointment/', doctorAppoint, name='book_appointment'),
     path('appointment_fixed/<str:appoint>/', appointment_fixed, name='appointment_fixed')
 
-]
 
-# Serve static files during development
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-# Serve media files during development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
