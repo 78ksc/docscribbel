@@ -1,0 +1,16 @@
+
+{% extends 'main.html' %}
+
+{% block content %}
+<br>
+<br><br><br><h1>add date and time here</h1>
+<!-- appointment_input.html -->
+  <h2>Select Date and Time for Appointment</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="date_and_time">Select Date and Time:</label>
+    <input type="datetime-local" id="date_and_time" name="date_and_time" required>
+    <input type="hidden" name="appointment_id" value="{{ reference }}">
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
