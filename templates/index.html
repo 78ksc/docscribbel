@@ -284,21 +284,26 @@
 <!-- /Section: services -->
 	
 <!-- section medicens -->
-<!-- <h1>Medicen Showcase</h1> -->
-<section id="doctor" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-	{% for medicen in medicens %}
-	<div class="medicen" style="width: 22%; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; padding: 10px;">
-		<img src="{{ medicen.image.url }}" alt="{{ medicen.name }}" style="width: 100%; border-radius: 5px;">
-		<div class="medicen-info" style="margin-top: 10px;">
-			<h2>{{ medicen.name }}</h2>
-			<p><strong>Description:</strong> {{ medicen.description }}</p>
-			<p><strong>Price:</strong> ${{ medicen.price }}</p>
-			<p><strong>Expiry Date:</strong> {{ medicen.expiry_date }}</p>
+<!-- Section: intro -->
+<section id="medicens" class="medicens">
+	<div style="height: 8rem;"></div>
+	<h1 style="width: 100%; display: flex; justify-content: center;">Medicen Showcase</h1>
+	<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+		{% for medicen in medicens %}
+		<div class="medicen" style="width: 22%; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; padding: 10px;">
+			<img src="{{ medicen.image.url }}" alt="{{ medicen.name }}" style="width: 100%; border-radius: 5px;">
+			<div class="medicen-info" style="margin-top: 10px;">
+				<h2>{{ medicen.name }}</h2>
+				<p><strong>Description:</strong> {{ medicen.description }}</p>
+				<p><strong>Price:</strong> ${{ medicen.price }}</p>
+				<p><strong>Expiry Date:</strong> {{ medicen.expiry_date }}</p>
+			</div>
 		</div>
+		{% empty %}
+		<p>No medicens available.</p>
+		{% endfor %}
 	</div>
-	{% empty %}
-	<p>No medicens available.</p>
-	{% endfor %}
+	
 </section>
 <!-- /section medicens -->
 
