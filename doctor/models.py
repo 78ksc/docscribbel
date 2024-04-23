@@ -60,3 +60,14 @@ class Investigation(models.Model):
     i_name = models.CharField(max_length=200, unique=True)
     i_price = models.IntegerField()
     i_result = models.CharField(max_length=200)
+
+
+class Medicensell(models.Model):
+    name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='images/med', blank=True, null=True)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    expiry_date = models.DateField()
+
+    def __str__(self):
+        return self.name

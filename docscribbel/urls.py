@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.shortcuts import render,redirect
-from doctor.models import Doctor,Appoint,Specilization
+from doctor.models import Doctor,Appoint,Specilization,Medicensell
 from django import forms
 from patient.models import Patient
 from django.conf import settings
@@ -99,13 +99,15 @@ def home(request):
         patient = Patient.objects.get(user = request.user)
     except:
         patient=None
-    
+    medicens = Medicensell.objects.all()[:4]  # Fetch only the first four medicens
+
     specializations = Specilization.objects.all()
     all_app = Appoint.objects.filter(request_created_by=patient)
     con = {
         'all_docs' : all_docs,
         'all_app' : all_app,
         'specializations':specializations,
+        'medicens': medicens,
     }
     return render(request,'index.html',con)
 

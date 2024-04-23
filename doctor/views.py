@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from patient.forms import CreateUser
-from .models import Patient,Doctor
+from .models import Patient,Doctor,Medicensell
 from django.contrib.auth.decorators import login_required
 from .forms import DoctorProfileForm
 
@@ -128,3 +128,5 @@ def doctorSearch(request):
         'docs' : result_doctors,
     }
     return render(request, 'doctor/result_doctor.html',conc)
+
+
