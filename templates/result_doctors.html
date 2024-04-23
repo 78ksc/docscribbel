@@ -88,7 +88,17 @@
                     <form action="{% url 'book_appointment' %}" method="get">
                         <input type="hidden" name="sdoctor" value="{{doc.id}}">
                         <input type="hidden" name="sappoint" value="{{refrence}}">
-                        <button type="submit" class="btn">Book Appointment</button>
+                        {% if request.user.is_authenticated %}
+                            <button type="submit" class="btn">Book Appointment</button>
+                        {% else %}
+                            <button type="button" class="btn" onclick="redirectToLogin()">Book Appointment</button>
+                        {% endif %}
+                        <script>
+                            function redirectToLogin() {
+                                window.location.href = "{% url 'login' %}";
+                            }
+                        </script>
+                        
                     </form>
                 </div>
             </div>

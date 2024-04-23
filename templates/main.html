@@ -70,11 +70,11 @@
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<b class="caret"></b></a>
 				  <ul class="dropdown-menu">
 					{% if request.user.is_authenticated %}
-					<li><a href="{% url 'login' %}">login</a></li>
-					<li><a href="{% url 'register' %}">register</a></li>
-					{% else %}
 					<li><a href="{% url 'account' %}">my profile</a></li>
 					<li><a href="{% url 'logout' %}">logout</a></li>
+					{% else %}
+					<li><a href="{% url 'login' %}">login</a></li>
+					<li><a href="{% url 'register' %}">register</a></li>
 					{% endif %}
 				  </ul>
 				</li>
