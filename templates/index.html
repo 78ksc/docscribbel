@@ -208,7 +208,7 @@
 					</div>
 					<div class="service-desc">
 						<h5 class="h-light">Medical checkup</h5>
-						<p>Vestibulum tincidunt enim in pharetra malesuada.</p>
+						<p>Book appointment at affordable rate at your comfort.</p>
 					</div>
                 </div>
 				</div>
@@ -219,8 +219,8 @@
 						<span class="fa fa-wheelchair fa-3x"></span> 
 					</div>
 					<div class="service-desc">
-						<h5 class="h-light">Nursing Services</h5>
-						<p>Vestibulum tincidunt enim in pharetra malesuada.</p>
+						<h5 class="h-light">Find Clinic</h5>
+						<p>Find nearest clinic to you.</p>
 					</div>
                 </div>
 				</div>
@@ -231,7 +231,7 @@
 					</div>
 					<div class="service-desc">
 						<h5 class="h-light">Pharmacy</h5>
-						<p>Vestibulum tincidunt enim in pharetra malesuada.</p>
+						<p>Buy medicens at affordavle rate at your comfort.</p>
 					</div>
                 </div>
 				</div>
@@ -246,8 +246,8 @@
 						<span class="fa fa-h-square fa-3x"></span> 
 					</div>
 					<div class="service-desc">
-						<h5 class="h-light">Gyn Care</h5>
-						<p>Vestibulum tincidunt enim in pharetra malesuada.</p>
+						<h5 class="h-light">MRS</h5>
+						<p>recommend medicen based on your symptoms.</p>
 					</div>
                 </div>
 				</div>
@@ -258,8 +258,8 @@
 						<span class="fa fa-filter fa-3x"></span> 
 					</div>
 					<div class="service-desc">
-						<h5 class="h-light">Neurology</h5>
-						<p>Vestibulum tincidunt enim in pharetra malesuada.</p>
+						<h5 class="h-light">Calculate BMI</h5>
+						<p>Find your health status by calculating Body Mass Index.</p>
 					</div>
                 </div>
 				</div>
@@ -290,7 +290,7 @@
 	<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
 		{% for medicen in medicens %}
 		<div class="medicen" style="width: 22%; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; padding: 10px;">
-			<img src="{{ medicen.image.url }}" alt="{{ medicen.name }}" style="width: 100%; border-radius: 5px;">
+			<img src="{{ medicen.image.url }}" alt="{{ medicen.name }}" style="width: 100%;max-height: 28rem; border-radius: 5px;">
 			<div class="medicen-info" style="margin-top: 10px;">
 				<h2>{{ medicen.name }}</h2>
 				<p><strong>Description:</strong> {{ medicen.description }}</p>
@@ -418,16 +418,22 @@
 
 
 	<!-- /Section: team -->
-<section>
-	{% for app in all_app %}
-	<div>
-		{{app.alloted_doctor}}
-	</div>
-	<p>{{app.doctor_spec}}</p>
-	<p>{{app.appointment_status}}</p>
-	<p>{{app.date_of_appointment}}</p>
-	{% endfor %}
-</section>
+	<section style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
+		<h1>Your Appointments</h1>
+		{% for app in all_app %}
+		<div style="border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin: 10px; width: calc(25% - 20px);">
+			<p><strong>Appointed doctor:</strong> {{ app.alloted_doctor }}</p>
+			<p><strong>Doctor specification:</strong> {{ app.doctor_spec }}</p>
+			<p><strong>Appointment status:</strong> {{ app.appointment_status }}</p>
+			<p><strong>Date of appointment:</strong> {{ app.date_of_appointment }}</p>
+		</div>
+		{% if forloop.counter|divisibleby:4 %}
+		<div style="flex-basis: 100%; height: 0;"></div>
+		{% endif %}
+		{% endfor %}
+	</section>
+	
+	
 	
 		
 	<!-- Section: works -->
