@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Medicines</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .medicen {
+            width: 300px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .medicen img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px 5px 0 0;
+        }
+        .medicen-info {
+            padding: 15px;
+        }
+        .medicen-info h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .medicen-info p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .medicen-info strong {
+            color: #333;
+        }
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 0 0 5px 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Available Medicines</h1>
+
+<div class="container">
+    {% for medicen in all_meds %}
+    <div class="medicen">
+        <img src="{{ medicen.image.url }}" alt="{{ medicen.name }}">
+        <div class="medicen-info">
+            <h2>{{ medicen.name }}</h2>
+            <p><strong>Description:</strong> {{ medicen.description }}</p>
+            <p><strong>Price:</strong> ${{ medicen.price }}</p>
+            <p><strong>Expiry Date:</strong> {{ medicen.expiry_date }}</p>
+        </div>
+        <a href="{% url 'buy' %}" class="buy-button">Buy Now</a>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

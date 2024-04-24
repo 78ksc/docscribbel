@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+            width: calc(50% - 20px);
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .card img {
+            width: 40%;
+            height: auto;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .card-details {
+            padding: 20px;
+            width: 60%;
+        }
+
+        .doctor-info h3 {
+            margin: 0;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .doctor-info p {
+            margin: 0;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .doctor-info a {
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .doctor-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Available Doctors</h1>
+
+<div class="container">
+    {% for doc in all_docs %}
+    <div class="card">
+        <img src="{{ doc.pic.url }}" alt="{{ doc.user.get_full_name }}">
+        <div class="card-details">
+            <div class="doctor-info">
+                <h2>{{ doc.user.get_full_name }}</h2>
+                <p><strong>Specialization:</strong> {{ doc.spec }}</p>
+                <p><strong>Education:</strong> {{ doc.edu }}</p>
+                <p><strong>Experience:</strong> {{ doc.exp }} years</p>
+                <p><strong>Consulting Fees:</strong> ${{ doc.consulting_fees }}</p>
+                {% if doc.clinic_name %}
+                    <p><strong>Clinic Name:</strong> {{ doc.clinic_name }}</p>
+                {% else %}
+                    <p><strong>Clinic Name:</strong> No Clinic Name</p>
+                {% endif %}
+                {% if doc.clinic_location %}
+                    <p><strong>Clinic Location:</strong> {{ doc.clinic_location }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

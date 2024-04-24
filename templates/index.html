@@ -189,7 +189,7 @@
 <!-- Section: intro -->
 <section id="medicens" class="medicens">
 	<div style="height: 8rem;"></div>
-	<h1 style="width: 100%; display: flex; justify-content: center;">Medicen Showcase</h1>
+	<h1 style="width: 100%; display: flex; justify-content: center;">Medicen</h1>
 	<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
 		{% for medicen in medicens %}
 		<div class="medicen" style="width: 22%; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; padding: 10px;">
@@ -200,13 +200,28 @@
 				<p><strong>Price:</strong> ${{ medicen.price }}</p>
 				<p><strong>Expiry Date:</strong> {{ medicen.expiry_date }}</p>
 			</div>
+			<a href="{% url 'buy' %}"><button type="button" class="btn btn-primary"> Buy </button></a>
 		</div>
-		{% empty %}
-		<p>No medicens available.</p>
 		{% endfor %}
+	</div>
+	<div style="display: flex; justify-content: center; margin: 2rem;">
+		<div style="display: inline-block;
+	padding: 10px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #fff;
+	background-color: #007bff;
+	border: 2px solid #007bff;
+	border-radius: 5px;
+	transition: all 0.3s;">
+	<a href="{% url 'all_meds' %}" style="text-decoration: none; color: inherit;">More</a>
+	</div>
 	</div>
 	
 </section>
+
+
 <!-- /section medicens -->
 
 
@@ -233,8 +248,8 @@
             <div id="filters-container" class="cbp-l-filters-alignLeft">
                 <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All (<div class="cbp-filter-counter"></div>)</div>
                 <div data-filter=".General" class="cbp-filter-item">Genral Physician (<div class="cbp-filter-counter"></div>)</div>
-                <div data-filter=".psychiatrist" class="cbp-filter-item">Psychiatrist (<div class="cbp-filter-counter"></div>)</div>
-                <div data-filter=".neurologist" class="cbp-filter-item">Neurologist (<div class="cbp-filter-counter"></div>)</div>
+                <div data-filter=".Psychiatrist" class="cbp-filter-item">Psychiatrist (<div class="cbp-filter-counter"></div>)</div>
+                <div data-filter=".Neurologist" class="cbp-filter-item">Neurologist (<div class="cbp-filter-counter"></div>)</div>
             </div>
 		
             <div id="grid-container" class="cbp-l-grid-team">
@@ -262,60 +277,26 @@
 						{% endif %}
                     </li>
 					{% endfor %}
-                    <!-- <li class="cbp-item cardiologist">
-                        <a href="doctors/member2.html" class="cbp-caption cbp-singlePage">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="{% static 'img/team/2.jpg'%}" alt="" width="100%">
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="doctors/member2.html" class="cbp-singlePage cbp-l-grid-team-name">Joseph Murphy</a>
-                        <div class="cbp-l-grid-team-position">Cardiologist</div>
-                    </li>
-                    <li class="cbp-item cardiologist">
-                        <a href="doctors/member3.html" class="cbp-caption cbp-singlePage">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="{% static 'img/team/3.jpg'%}" alt="" width="100%">
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="doctors/member3.html" class="cbp-singlePage cbp-l-grid-team-name">Alison Davis</a>
-                        <div class="cbp-l-grid-team-position">Cardiologist</div>
-                    </li>
-                    <li class="cbp-item neurologist">
-                        <a href="doctors/member4.html" class="cbp-caption cbp-singlePage">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="{% static 'img/team/4.jpg'%}" alt="" width="100%">
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="doctors/member4.html" class="cbp-singlePage cbp-l-grid-team-name">Adam Taylor</a>
-                        <div class="cbp-l-grid-team-position">Neurologist</div>
-                    </li> -->
-
+                    
                 </ul>
             </div>
 			</div>
 			</div>
 		</div>
+<div style="display: flex; justify-content: center; margin: 2rem;">
+	<div style="display: inline-block;
+padding: 10px 20px;
+font-size: 16px;
+font-weight: bold;
+text-decoration: none;
+color: #fff;
+background-color: #007bff;
+border: 2px solid #007bff;
+border-radius: 5px;
+transition: all 0.3s;">
+<a href="{% url 'all_docs' %}" style="text-decoration: none; color: inherit;">More</a>
+</div>
+</div>
 
 	</section>
 

@@ -94,11 +94,11 @@ def result_doctors(request):
 
 
 def home(request):
-    all_docs = Doctor.objects.all()
+    all_docs = Doctor.objects.all()[:4]
     try:
         patient = Patient.objects.get(user = request.user)
         print("patient done")
-        all_app = Appoint.objects.filter(request_created_by=patient)
+        all_app = Appoint.objects.filter(request_created_by=patient)[:4]
         print("appointment done")
     except:
         print("patient dosent exist")
@@ -115,6 +115,22 @@ def home(request):
     }
     return render(request,'index.html',con)
 
+def all_docs(request):
+    all_docs = Doctor.objects.all()
+    return render(request,'docs.html',{'all_docs':all_docs})
+
+
+def all_meds(request):
+    all_meds = Medicensell.objects.all()
+    return render(request,'meds.html',{'all_meds':all_meds})
+
+def  buy(request):
+    return render(request,'buy.html')
+
+def  esc(request):
+    return render(request,'esc.html')
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
@@ -122,7 +138,12 @@ urlpatterns = [
     path('', include('patient.urls')),
     path('result_doctors/',result_doctors,name='result_doctors'),
     path('book_appointment/', doctorAppoint, name='book_appointment'),
-    path('appointment_fixed/<str:appoint>/', appointment_fixed, name='appointment_fixed')
+    path('appointment_fixed/<str:appoint>/', appointment_fixed, name='appointment_fixed'),
+    path('all_docs/',all_docs,name='all_docs'),
+    path('all_meds/',all_meds,name='all_meds'),
+    path('ecom/',buy,name='buy'),
+    path('esc/',esc,name='esc'),
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
