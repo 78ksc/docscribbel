@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from .forms import CreateUser,PatientForm
-from .models import Patient
+from .models import Patient,Symptom, Precaution, Medication, Diet, Workout, Disease
 from django.contrib.auth.decorators import login_required
 from django.views import View
 
@@ -162,9 +162,6 @@ def patientAccount(request):
 #     }
 
 #     return render(request, 'doctor/account.html', context)
-
-
-# -------------------------------  authentication section ends :
 
 
 def bmi(request):
