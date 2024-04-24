@@ -3,21 +3,27 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="height: 80vh; justify-content: center; display: flex; align-items: center;">
         <div class="col-md-6 col-lg-4">
             <div class="card mt-5">
                 <div class="card-body">
+                    <div>
+                        {% for i in err %}
+                        <p style="color: red;">{{i}}</p>
+                        {% endfor %}
+                    </div>
                     <h2 class="text-center mb-4">Patient Register</h2>
                     <form method="post">
                         {% csrf_token %}
                         {% for field in form %}
-                            <div class="mb-3">
+                            <div class="mb-3" style="margin-bottom: 2rem;">
                                 {{ field.label_tag }}
                                 {{ field }}
                             </div>
                         {% endfor %}
                         <button type="submit" class="btn btn-primary w-100">Register as Patient</button>
                     </form>
+                    <p>already have account? <a href="{% url 'login' %}">login</a></p>
                 </div>
             </div>
         </div>

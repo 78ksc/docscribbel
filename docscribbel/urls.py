@@ -97,12 +97,16 @@ def home(request):
     all_docs = Doctor.objects.all()
     try:
         patient = Patient.objects.get(user = request.user)
+        print("patient done")
+        all_app = Appoint.objects.filter(request_created_by=patient)
+        print("appointment done")
     except:
+        print("patient dosent exist")
         patient=None
+        all_app=None
     medicens = Medicensell.objects.all()[:4]  # Fetch only the first four medicens
 
     specializations = Specilization.objects.all()
-    all_app = Appoint.objects.filter(request_created_by=patient)
     con = {
         'all_docs' : all_docs,
         'all_app' : all_app,

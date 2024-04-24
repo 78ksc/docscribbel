@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+    <form id="bmiForm">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" required>
+
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" name="height" required>
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        document.getElementById('bmiForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var weight = parseFloat(document.getElementById('weight').value);
+            var height = parseFloat(document.getElementById('height').value) / 100; // Convert height to meters
+
+            var bmi = weight / (height * height);
+            var result = '';
+
+            if (isNaN(bmi)) {
+                result = 'Please enter valid weight and height.';
+            } else {
+                result = 'Your BMI is ' + bmi.toFixed(2);
+
+                if (bmi < 18.5) {
+                    result += ' - Underweight';
+                } else if (bmi >= 18.5 && bmi < 25) {
+                    result += ' - Normal weight';
+                } else if (bmi >= 25 && bmi < 30) {
+                    result += ' - Overweight';
+                } else {
+                    result += ' - Obese';
+                }
+            }
+
+            document.getElementById('result').innerText = result;
+        });
+    </script>
+</body>
+</html>

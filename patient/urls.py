@@ -6,5 +6,6 @@ urlpatterns = [
     path('logout/', logo, name='logout'),
     path('register/', register,name='register'),
     path('account/', patientAccount, name='account'),
-
+    path('bmi/', bmi, name='bmi'),
+   
 ]

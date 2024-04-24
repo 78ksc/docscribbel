@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from .forms import CreateUser,PatientForm
 from .models import Patient
 from django.contrib.auth.decorators import login_required
+from django.views import View
+
 
 # -------------------------------  authentication section starts :
 def log(request):
@@ -27,33 +29,69 @@ def log(request):
     return render(request,'patient/login.html',con)
 
 
-def register(request):
-    count = 1
-    form = CreateUser()
-    if request.method == "POST":
-        form = CreateUser(request.POST) # make all one by one loke username email pass etc so that we can access
-        uname = request.POST.get('username')
-        # pass1 = request.POST.get('password')
+# def register(request):
+#     form = CreateUser()
+    
+#     if request.method == "POST":
+#         form = CreateUser(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+            
+#             try:
+#                 user = User.objects.get(username=username)
+#             except User.DoesNotExist:
+#                 return render(request, 'patient/register.html', {'msg': 'User not found'})
+            
+#             # Create patient profile
+#             Patient.objects.create(user=user)
+            
+#             # Login the user
+#             # login(request, user)
+#             if user is not None:
+#                 login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+#                 return redirect('home')
+            
+#             # Redirect to account creation for patient to add other info
+#             # return redirect('account')
         
+#         print(form.errors)
+    
+#     context = {
+#         'form': form,
+#     }
+#     return render(request, 'patient/register.html', context)
+
+def register(request):
+    form = CreateUser()
+    
+    if request.method == "POST":
+        form = CreateUser(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            
             try:
-                obj = User.objects.get(username = uname)
-                Patient.objects.create(user=obj).save()
+                user = User.objects.get(username=username)
             except User.DoesNotExist:
                 return render(request, 'patient/register.html', {'msg': 'User not found'})
-            # print(obj)
-            login(request,obj)
-            count = 0
-            # redirect to account creation of patient tp add other info
-            # return redirect('home')
+            
+            # Create patient profile
+            Patient.objects.create(user=user)
+            
+            # Login the user
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            
+            # Redirect to account creation for patient to add other info
             return redirect('account')
-
-    con={
-        'form':form,
+        
+        print(form.errors)
+    
+    context = {
+        'form': form,
+        'err':form.errors,
     }
-    return render(request,'patient/register.html',con)
-
+    return render(request, 'patient/register.html', context)
 def logo(request):
     if request.method == "POST":
         logout(request)
@@ -129,3 +167,5 @@ def patientAccount(request):
 # -------------------------------  authentication section ends :
 
 
+def bmi(request):
+    return render(request,'patient/bmi.html')
