@@ -320,7 +320,9 @@
 
 
 	<!-- /Section: team -->
+	{% if all_app %}
 	<h1>Your Appointments</h1>
+	{% endif %}
 	<section style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
 		{% for app in all_app %}
 		<div style="border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin: 10px; width: calc(25% - 20px);">
